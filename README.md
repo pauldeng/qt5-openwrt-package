@@ -2,7 +2,7 @@
 
 Cross compile the Qt5 Core library for OpenWRT MIPS platform.
 
-# OpenWRT Version
+## Target OpenWRT Versions
 
 * If you are running OpenWRT 14.07, please use the master branch.
 * If you are running OpenWRT 19.07, please use the 19.07 branch.
