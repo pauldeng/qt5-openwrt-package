@@ -2,6 +2,11 @@
 
 Cross compile the Qt5 Core library for OpenWRT MIPS platform.
 
+# OpenWRT Version
+
+The master branch serves OpenWRT 14.07.
+The 19.07 branch serves OpenWRT 19.07.
+
 ## Configure Qt Modules and Features
 
 You can see all the modules available by browsering the folders of Qt5 source code.  
@@ -120,9 +125,9 @@ OpenWRT compiler is required.
     ```
 10. Build. Transfer to your target device and run.
 
-## Tested Platform
+## Tested Hardware Platform
 
-TBA
+* OpenWRT 14.07 based industrial 4G router
 
 ## Acknowledgments
 
