@@ -1,0 +1,18 @@
+https://bugreports.qt.io/browse/QTBUG-68156
+https://codereview.qt-project.org/c/qt/qtbase/+/287575/2/src/network/ssl/qsslsocket_openssl_symbols.cpp
+--- a/qtbase/src/network/ssl/qsslsocket_openssl_symbols.cpp
++++ b/qtbase/src/network/ssl/qsslsocket_openssl_symbols.cpp
+@@ -1233,12 +1233,12 @@
+     RESOLVEFUNC(SSL_select_next_proto)
+     RESOLVEFUNC(SSL_CTX_set_next_proto_select_cb)
+     RESOLVEFUNC(SSL_get0_next_proto_negotiated)
+-#endif // OPENSSL_VERSION_NUMBER >= 0x1000100fL ...
+ #if OPENSSL_VERSION_NUMBER >= 0x10002000L
+     RESOLVEFUNC(SSL_set_alpn_protos)
+     RESOLVEFUNC(SSL_CTX_set_alpn_select_cb)
+     RESOLVEFUNC(SSL_get0_alpn_selected)
+ #endif // OPENSSL_VERSION_NUMBER >= 0x10002000L ...
++#endif // OPENSSL_VERSION_NUMBER >= 0x1000100fL
+     RESOLVEFUNC(DH_new)
+     RESOLVEFUNC(DH_free)
+     RESOLVEFUNC(d2i_DHparams)
