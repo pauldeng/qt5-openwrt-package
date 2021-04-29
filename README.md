@@ -34,7 +34,7 @@ For more information, please refer to https://doc.qt.io/qt-5/configure-options.h
 
 OpenWRT compiler is required.
 
-1. Download SDK, for example https://archive.openwrt.org/barrier_breaker/14.07/ramips/mt7620n/OpenWrt-SDK-ramips-for-linux-x86_64-gcc-4.8-linaro_uClibc-0.9.33.2.tar.bz2  
+1. Download SDK, for example https://downloads.openwrt.org/releases/19.07.7/targets/ath79/generic/openwrt-sdk-19.07.7-ath79-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz  
 2. Extract the SDK  
 3. Clone this repo  
 4. Put this repo into SDK/package  
@@ -127,7 +127,7 @@ OpenWRT compiler is required.
 
 ## Tested Hardware Platform
 
-* OpenWRT 14.07 based industrial 4G router
+* OpenWRT 19.07 based industrial 4G router
 
 ## Acknowledgments
 
