@@ -69,7 +69,6 @@ OpenWRT compiler is required.
 
     ```bash
     make -C scripts/config/ clean  
-    ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"  
     make
     ```
 2. then, go to the qt source code and make install by
