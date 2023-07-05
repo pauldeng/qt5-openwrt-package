@@ -1,0 +1,35 @@
+From aaa75b00c2e259b03265eb7d00bce534958517f8 Mon Sep 17 00:00:00 2001
+From: Paul Deng <paul.deng@gallagher.com>
+Date: Wed, 5 Jul 2023 22:30:44 +1000
+Subject: [PATCH] Fix -Wdeprecated-copy warnings
+ https://codereview.qt-project.org/c/qt/qtbase/+/245434
+
+---
+ qlist.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/qtbase/src/corelib/tools/qlist.h b/qtbase/src/corelib/tools/qlist.h
+index af7659e..5fa6d56 100644
+--- a/qtbase/src/corelib/tools/qlist.h
++++ b/qtbase/src/corelib/tools/qlist.h
+@@ -72,7 +72,7 @@ template <typename T> class QSet;
+ template <typename T> struct QListSpecialMethods
+ {
+ protected:
+-    ~QListSpecialMethods() {}
++    ~QListSpecialMethods() = default;
+ };
+ template <> struct QListSpecialMethods<QByteArray>;
+ template <> struct QListSpecialMethods<QString>;
+@@ -237,6 +237,8 @@ public:
+         // can't remove it in Qt 5, since doing so would make the type trivial,
+         // which changes the way it's passed to functions by value.
+         inline iterator(const iterator &o) Q_DECL_NOTHROW : i(o.i){}
++        inline iterator &operator=(const iterator &o) Q_DECL_NOTHROW
++        { i = o.i; return *this; }
+ #endif
+         inline T &operator*() const { return i->t(); }
+         inline T *operator->() const { return &i->t(); }
+-- 
+2.34.1
+

@@ -1,0 +1,30 @@
+From 86eef8ea3b3cf85df784ffeee5b52c6d5ec07342 Mon Sep 17 00:00:00 2001
+From: Paul Deng <paul.deng@gallagher.com>
+Date: Wed, 5 Jul 2023 22:00:49 +1000
+Subject: [PATCH] Fix -Wdeprecated-copy warnings
+ https://codereview.qt-project.org/c/qt/qtbase/+/245434
+
+---
+ qvariant.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/qtbase/src/corelib/kernel/qvariant.h b/qtbase/src/corelib/kernel/qvariant.h
+index 9a5fc63..ae11d8b 100644
+--- a/qtbase/src/corelib/kernel/qvariant.h
++++ b/qtbase/src/corelib/kernel/qvariant.h
+@@ -396,10 +396,11 @@ class Q_CORE_EXPORT QVariant
+             : type(variantType), is_shared(false), is_null(false)
+         {}
+ 
+-        inline Private(const Private &other) Q_DECL_NOTHROW
++        Private(const Private &other) Q_DECL_NOTHROW
+             : data(other.data), type(other.type),
+               is_shared(other.is_shared), is_null(other.is_null)
+         {}
++        Private &operator=(const Private &other) Q_DECL_NOTHROW = default;
+         union Data
+         {
+             char c;
+-- 
+2.34.1
+
