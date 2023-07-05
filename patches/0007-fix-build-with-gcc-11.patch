@@ -1,0 +1,26 @@
+From fdd32e6182fe64321a10c0064860c3a61fdf8ee0 Mon Sep 17 00:00:00 2001
+From: Paul Deng <paul.deng@gallagher.com>
+Date: Wed, 5 Jul 2023 21:15:57 +1000
+Subject: [PATCH] fix build with gcc 11
+ https://lists.buildroot.org/pipermail/buildroot/2021-July/616261.html
+
+---
+ qbytearraymatcher.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/qtbase/src/corelib/tools/qbytearraymatcher.h b/qtbase/src/corelib/tools/qbytearraymatcher.h
+index dafaea9..d50fbd7 100644
+--- a/qtbase/src/corelib/tools/qbytearraymatcher.h
++++ b/qtbase/src/corelib/tools/qbytearraymatcher.h
+@@ -42,6 +42,8 @@
+ 
+ #include <QtCore/qbytearray.h>
+ 
++#include <limits>
++
+ QT_BEGIN_NAMESPACE
+ 
+ 
+-- 
+2.34.1
+
