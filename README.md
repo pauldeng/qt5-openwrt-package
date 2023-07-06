@@ -34,14 +34,14 @@ For more information, please refer to https://doc.qt.io/qt-5/configure-options.h
 
 OpenWRT compiler is required.
 
-1. Download SDK, for example https://downloads.openwrt.org/releases/19.07.7/targets/ath79/generic/openwrt-sdk-19.07.7-ath79-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz  
+1. Download SDK, for example https://archive.openwrt.org/releases/22.03.5/targets/ath79/generic/openwrt-sdk-22.03.5-ath79-generic_gcc-11.2.0_musl.Linux-x86_64.tar.xz  
 2. Extract the SDK  
 3. Clone this repo  
 4. Put this repo into SDK/package  
 5. Install dependencies by  
 
     ```bash
-    sudo apt install libncurses-dev zlib1g-dev gawk subversion python build-essential ccache
+    sudo apt install libncurses-dev zlib1g-dev gawk subversion python2 build-essential ccache nodejs npm jq
     ```
 
 6. Compile by  
