@@ -34,24 +34,52 @@ For more information, please refer to https://doc.qt.io/qt-5/configure-options.h
 
 OpenWRT compiler is required.
 
-1. Download SDK, for example https://archive.openwrt.org/releases/22.03.5/targets/ath79/generic/openwrt-sdk-22.03.5-ath79-generic_gcc-11.2.0_musl.Linux-x86_64.tar.xz  
-2. Extract the SDK  
-3. Clone this repo  
-4. Put this repo into SDK/package  
-5. Install dependencies by  
+1. Under Ubuntu 18.04
+2. Install dependencies by  
 
     ```bash
-    sudo apt install libncurses-dev zlib1g-dev gawk subversion python2 build-essential ccache nodejs npm jq
+    sudo apt install build-essential ccache ecj fastjar file flex g++ gawk gettext git java-propose-classpath java-wrappers jq libelf-dev libffi-dev libncurses5-dev libncursesw5-dev libssl-dev libtool python2.7 python2.7-dev python3 python3-dev python3-distutils python3-setuptools rsync subversion swig time u-boot-tools unzip wget xsltproc zlib1g-dev bison
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    # Close and open a new terminal
+    nvm install v12
     ```
 
-6. Compile by  
+3. Download your [target device SDK](https://wiki.teltonika-networks.com/gpl/RUT9_R_GPL_00.07.04.4.tar.gz)  
+4. Extract the SDK by  
+
+    ```bash
+    tar -xvf RUT*.tar.gz
+    ```
+
+6. Update feeds and compile standard firmware by  
+
+    ```bash
+    ./scripts/feeds update -a
+    # have a walk outside
+    make
+    # have another walk outside
+    ```
+
+7. Clone this repo to the SDK/packages  
+
+8. Configure by  
+
+    ```bash
+    make menuconfig
+    # Go to Libraries --> Qt5
+    # Set <M> qt5-core
+    # Set <M> qt5-network
+    # Exit and Save
+    ```
+
+9. Compile by  
 
     ```bash
     make package/qt5-openwrt-package/compile V=s
     ```
 
-7. It will take a long time to build  
-8. You can find compiled ipk files in SDK/bin/  
+10. It will take a long time to build  
+11. You can find compiled ipk files in SDK/bin/  
 
 ## Install the Compiled Shared Library to Target Device
 
