@@ -45,6 +45,7 @@ OpenWRT compiler is required.
     ```
 
 3. Download your [target device SDK](https://wiki.teltonika-networks.com/gpl/RUT9_R_GPL_00.07.04.4.tar.gz)  
+
 4. Extract the SDK by  
 
     ```bash
@@ -79,16 +80,18 @@ OpenWRT compiler is required.
     ```
 
 10. It will take a long time to build  
+
 11. You can find compiled ipk files in SDK/bin/  
 
 ## Install the Compiled Shared Library to Target Device
 
 1. Copy compiled ipk files to the target device by scp  
+
 2. Install ipk files by  
 
     ```bash
-    opkg install qt5-core_5.11-3_ramips_24kec.ipk
-    opkg install qt5-network_5.11-3_ramips_24kec.ipk
+    opkg install qt5-core_5.11-3_mips_24kc.ipk
+    opkg install qt5-network_5.11-3_mips_24kc.ipk
     ```
 
 ## Hello World Application
@@ -96,21 +99,21 @@ OpenWRT compiler is required.
 1. At the root of SDK, execute following command
 
     ```bash
-    make -C scripts/config/ clean  
-    ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"  
+    make -C scripts/config/ clean
+    ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
     make
     ```
 2. then, go to the qt source code and make install by
 
     ```bash
-    cd  build_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/qt-everywhere-src-5.11.3  
+    cd build_dir/target-mips_24kc_musl/qt-everywhere-src-5.11.3/
     make install
     ```
 
 3. On your Ubuntu, please install qtcreator and other tools by
 
     ```bash
-    sudo apt install qtcreator qt5-default build-essential  
+    sudo apt install qtcreator qt5-default build-essential
     ```
 
 4. Add a new QT Device: QT Creator --> Tools --> Options --> Devices --> Add --> Generic Linux Device
@@ -124,15 +127,15 @@ OpenWRT compiler is required.
 5. Set a new compiler: QT Creator --> Tools --> Options --> Build & Run --> Compilers --> Add --> GCC --> for both C/C++
     * Name: OpenWrt GCC and OpenWrt G++
     * ABI: mips-linux-generic-elf-32bit
-    * Compiler path (GCC): staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/mipsel-openwrt-linux-uclibc-gcc
-    * Compiler path (G++): staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/mipsel-openwrt-linux-uclibc-g++
+    * Compiler path (GCC): staging_dir/toolchain-mips_24kc_gcc-8.4.0_musl/bin/mips-openwrt-linux-musl-gcc
+    * Compiler path (G++): staging_dir/toolchain-mips_24kc_gcc-8.4.0_musl/bin/mips-openwrt-linux-musl-g++
 
 6. Set a new debugger: QT Creator --> Tools --> Options --> Build & Run --> Debuggers --> Add  
     * Name: OpenWrt Debugger
-    * Path: staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/mipsel-openwrt-linux-uclibc-gdb
+    * Path: staging_dir/toolchain-mips_24kc_gcc-8.4.0_musl/bin/mips-openwrt-linux-musl-gdb
 
 7. Set a Qt5 version: QT Creator --> Tools --> Options --> Build & Run --> Qt Versions --> Add
-    * qmake location: staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/qmake
+    * qmake location: staging_dir/toolchain-mips_24kc_gcc-8.4.0_musl/bin/qmake
 
 8. Add a new Kit: QT Creator --> Tools --> Options --> Build & Run --> Kits --> Add
     * Name: OpenWrt Kit
@@ -156,7 +159,7 @@ OpenWRT compiler is required.
 
 ## Tested Hardware Platform
 
-* OpenWRT 19.07 based industrial 4G router
+* OpenWRT 22.03 based industrial 4G router
 
 ## Acknowledgments
 
