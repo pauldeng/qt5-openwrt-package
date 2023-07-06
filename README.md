@@ -1,11 +1,10 @@
-# Qt5 Library Package for OpenWRT
+# Qt5 Library Package for OpenWrt
 
-Cross compile the Qt5 Core library for OpenWRT MIPS platform.
+Cross compile the Qt5 Core library for OpenWRT platform.
 
-## Target OpenWRT Versions
+## Target OpenWrt Versions
 
-* If you are running OpenWRT 14.07, please use the master branch.
-* If you are running OpenWRT 19.07, please use the 19.07 branch.
+Please choose the branch for target device OpenWrt version.
 
 ## Configure Qt Modules and Features
 
@@ -20,11 +19,12 @@ You can see all the features available by following command.
 
 You can modify the Makefile to disable/enable this feature.  
 
-For more information, please refer to https://doc.qt.io/qt-5/configure-options.html.
+For more information, please refer to <https://doc.qt.io/qt-5/configure-options.html>.
 
 ## Special Cases
 
 ### Not enough space in /usr/lib/
+
 * If the target device has not enough space to install the library, you could choose to install the library to /tmp/. However, /tmp/ resides in ram and will be lost after reboot.  
 * If the target device has enough space to install the library, you need to modify the Makefile.  
 
@@ -32,27 +32,28 @@ For more information, please refer to https://doc.qt.io/qt-5/configure-options.h
 
 [![Cross Compile Qt5 for OpenWrt](https://img.youtube.com/vi/4yuvjuDuCLY/0.jpg)](https://www.youtube.com/watch?v=4yuvjuDuCLY)
 
-OpenWRT compiler is required.
+OpenWrt compiler is required.
 
 1. Under Ubuntu 18.04
-2. Install dependencies by  
+2. Install dependencies by
 
     ```bash
     sudo apt install build-essential ccache ecj fastjar file flex g++ gawk gettext git java-propose-classpath java-wrappers jq libelf-dev libffi-dev libncurses5-dev libncursesw5-dev libssl-dev libtool python2.7 python2.7-dev python3 python3-dev python3-distutils python3-setuptools rsync subversion swig time u-boot-tools unzip wget xsltproc zlib1g-dev bison
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
     # Close and open a new terminal
     nvm install v12
+    # Close and open a new terminal
     ```
 
 3. Download your [target device SDK](https://wiki.teltonika-networks.com/gpl/RUT9_R_GPL_00.07.04.4.tar.gz)  
 
-4. Extract the SDK by  
+4. Extract the SDK by
 
     ```bash
     tar -xvf RUT*.tar.gz
     ```
 
-6. Update feeds and compile standard firmware by  
+5. Update feeds and compile standard firmware by
 
     ```bash
     ./scripts/feeds update -a
@@ -61,9 +62,9 @@ OpenWRT compiler is required.
     # have another walk outside
     ```
 
-7. Clone this repo to the SDK/packages  
+6. Clone this repo to the `SDK/packages`
 
-8. Configure by  
+7. Configure by  
 
     ```bash
     make menuconfig
@@ -73,21 +74,21 @@ OpenWRT compiler is required.
     # Exit and Save
     ```
 
-9. Compile by  
+8. Compile by  
 
     ```bash
     make package/qt5-openwrt-package/compile V=s
     ```
 
-10. It will take a long time to build  
+9. It will take a long time to build  
 
-11. You can find compiled ipk files in SDK/bin/  
+10. You can find compiled ipk files in `SDK/bin/packages/mips_24kc/base`
 
 ## Install the Compiled Shared Library to Target Device
 
-1. Copy compiled ipk files to the target device by scp  
+1. Copy compiled ipk files to the target device by scp
 
-2. Install ipk files by  
+2. Install ipk files by
 
     ```bash
     opkg install qt5-core_5.11-3_mips_24kc.ipk
@@ -103,6 +104,7 @@ OpenWRT compiler is required.
     ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
     make
     ```
+
 2. then, go to the qt source code and make install by
 
     ```bash
@@ -118,7 +120,7 @@ OpenWRT compiler is required.
 
 4. Add a new QT Device: QT Creator --> Tools --> Options --> Devices --> Add --> Generic Linux Device
     * Name: OpenWrt Device
-    * Authentcation Type: Password
+    * Authentication Type: Password
     * Host address: Your device ip address
     * SSH port: 22
     * Username: your device username
@@ -130,7 +132,7 @@ OpenWRT compiler is required.
     * Compiler path (GCC): staging_dir/toolchain-mips_24kc_gcc-8.4.0_musl/bin/mips-openwrt-linux-musl-gcc
     * Compiler path (G++): staging_dir/toolchain-mips_24kc_gcc-8.4.0_musl/bin/mips-openwrt-linux-musl-g++
 
-6. Set a new debugger: QT Creator --> Tools --> Options --> Build & Run --> Debuggers --> Add  
+6. Set a new debugger: QT Creator --> Tools --> Options --> Build & Run --> Debuggers --> Add
     * Name: OpenWrt Debugger
     * Path: staging_dir/toolchain-mips_24kc_gcc-8.4.0_musl/bin/mips-openwrt-linux-musl-gdb
 
@@ -155,6 +157,7 @@ OpenWRT compiler is required.
         return 0;
     }
     ```
+
 10. Build. Transfer to your target device and run.
 
 ## Tested Hardware Platform
@@ -163,6 +166,6 @@ OpenWRT compiler is required.
 
 ## Acknowledgments
 
-* Forked from https://github.com/pawelkn/qt5-openwrt-package  
-* Updated by https://github.com/vonger  
-* Inspired by http://vonger.cn/?p=14588  
+* Forked from <https://github.com/pawelkn/qt5-openwrt-package>  
+* Updated by <https://github.com/vonger>  
+* Inspired by <http://vonger.cn/?p=14588>  
