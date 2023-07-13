@@ -4,7 +4,7 @@ Cross compile the Qt5 Core library for OpenWRT platform.
 
 ## Target OpenWrt Versions
 
-Please choose the branch for target device OpenWrt version.
+THis branch is tested on OpenWrt 22.03.5 based system.
 
 ## Configure Qt Modules and Features
 
@@ -23,10 +23,17 @@ For more information, please refer to <https://doc.qt.io/qt-5/configure-options.
 
 ## Special Cases
 
-### Not enough space in /usr/lib/
+### Not enough space in flash rootfs
 
-* If the target device has not enough space to install the library, you could choose to install the library to /tmp/. However, /tmp/ resides in ram and will be lost after reboot.  
-* If the target device has enough space to install the library, you need to modify the Makefile.  
+If the target device has not enough space to install the library, you could choose to install the library to [non-standard destinations](https://openwrt.org/docs/guide-user/additional-software/opkg#non-standard_installation_destinations).
+
+```bash
+# this following command installs to /usr/lib/libqt5 
+opkg install qt5-core_5.11-3_mips_24kc.ipk
+# The destinations are defined in /etc/opkg.conf
+opkg -d ram install somepackage
+# you can create a symblic link to /usr/lib
+```
 
 ## How to Compile Shared Library
 
@@ -35,6 +42,7 @@ For more information, please refer to <https://doc.qt.io/qt-5/configure-options.
 OpenWrt compiler is required.
 
 1. Under Ubuntu 18.04
+
 2. Install dependencies by
 
     ```bash
@@ -53,36 +61,36 @@ OpenWrt compiler is required.
     tar -xvf RUT*.tar.gz
     ```
 
-5. Update feeds and compile standard firmware by
+5. Clone this repo to the `SDK/packages`
+
+6. Update feeds and compile standard firmware by
 
     ```bash
     ./scripts/feeds update -a
     # have a walk outside
-    make
-    # have another walk outside
-    ```
 
-6. Clone this repo to the `SDK/packages`
-
-7. Configure by  
-
-    ```bash
     make menuconfig
+    # Go to Base system
+    # Set <M> libatomic
+    # Set <M> libstdcpp
     # Go to Libraries --> Qt5
     # Set <M> qt5-core
     # Set <M> qt5-network
     # Exit and Save
+
+    make
+    # have another walk outside
     ```
 
-8. Compile by  
+7. Compile by  
 
     ```bash
     make package/qt5-openwrt-package/compile V=s
     ```
 
-9. It will take a long time to build  
+8. It will take a long time to build  
 
-10. You can find compiled ipk files in `SDK/bin/packages/mips_24kc/base`
+9. You can find compiled ipk files in `SDK/bin/packages/mips_24kc/base`
 
 ## Install the Compiled Shared Library to Target Device
 
@@ -91,6 +99,9 @@ OpenWrt compiler is required.
 2. Install ipk files by
 
     ```bash
+    opkg install libstdcpp6_8.4.0-3_mips_24kc.ipk
+    opkg install libatomic1_8.4.0-3_mips_24kc.ipk
+
     opkg install qt5-core_5.11-3_mips_24kc.ipk
     opkg install qt5-network_5.11-3_mips_24kc.ipk
     ```
