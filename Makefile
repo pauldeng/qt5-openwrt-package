@@ -15,13 +15,13 @@ PKG_MD5SUM:=02b353bfe7a40a8dc4274e1d17226d2b
 
 PKG_SOURCE:=qt-everywhere-src-$(PKG_VERSION).$(PKG_RELEASE).tar.xz
 # Official QT source
-PKG_SOURCE_URL:=http://download.qt-project.org/archive/qt/$(PKG_VERSION)/$(PKG_VERSION).$(PKG_RELEASE)/single
+# PKG_SOURCE_URL:=http://download.qt-project.org/archive/qt/$(PKG_VERSION)/$(PKG_VERSION).$(PKG_RELEASE)/single
 # QT removed the 5.11 source code and here below is my personal backup
-# PKG_SOURCE_URL:=https://dengpeng.de/wp-content/uploads/2020/03
+PKG_SOURCE_URL:=https://dengpeng.de/wp-content/uploads/2020/03
 PKG_BUILD_DIR=$(BUILD_DIR)/qt-everywhere-src-$(PKG_VERSION).$(PKG_RELEASE)
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
-PKG_BUILD_DEPENDS:=+libstdcpp
+# PKG_BUILD_DEPENDS:=+libstdcpp
 
 include $(INCLUDE_DIR)/package.mk
 -include $(if $(DUMP),,./files/qmake.mk)
@@ -240,12 +240,12 @@ define Build/InstallDev
 endef
 
 define Package/qt5-core/install
-	# special: not enough space in /usr/lib/, install the files to /tmp/
-	$(INSTALL_DIR) $(1)/tmp/libqt5/core/ $(2)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.so* $(1)/tmp/libqt5/core/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.prl $(1)/tmp/libqt5/core/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.la $(1)/tmp/libqt5/core/
-	$(CP) $(TOOLCHAIN_DIR)/lib/libatomic.so* $(1)/tmp/libqt5/core/
+	# special: not enough space in /usr/lib/, install the files to /tmp/ by command in readme file
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.la $(1)/usr/lib/
+	$(CP) $(TOOLCHAIN_DIR)/lib/libatomic.so* $(1)/usr/lib/
 	# default: package should be installed in /usr/lib/
 	# $(INSTALL_DIR) $(1)/usr/lib/
 	# $(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Core.so* $(1)/usr/lib/
@@ -255,10 +255,10 @@ define Package/qt5-core/install
 endef
 
 # special: not enough space in /usr/lib/, then create a symlink
-define Package/qt5-core/postinst
+#define Package/qt5-core/postinst
 #!/bin/sh
-ln -sf /tmp/libqt5/core/* /usr/lib/
-endef
+#ln -sf /tmp/usr/lib/* /usr/lib/
+#endef
 
 # define Package/qt5-concurrent/install
 # 	$(INSTALL_DIR) $(1)/usr/lib/
@@ -268,11 +268,11 @@ endef
 # endef
 
 define Package/qt5-network/install
-	# special: not enough space in /usr/lib/, install the files to /tmp/
-	$(INSTALL_DIR) $(1)/tmp/libqt5/network/ $(2)/usr/lib/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.so* $(1)/tmp/libqt5/network/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.prl $(1)/tmp/libqt5/network/
-	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.la $(1)/tmp/libqt5/network/
+	# special: not enough space in /usr/lib/, install the files to /tmp/ by command in readme file
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.so* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.prl $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.la $(1)/usr/lib/
 	# default: package should be installed in /usr/lib/
 	# $(INSTALL_DIR) $(1)/usr/lib/
 	# $(CP) $(PKG_BUILD_DIR)/qtbase/lib/libQt5Network.so* $(1)/usr/lib/
@@ -281,10 +281,10 @@ define Package/qt5-network/install
 endef
 
 # special: not enough space in /usr/lib/, then create a symlink
-define Package/qt5-network/postinst
+#define Package/qt5-network/postinst
 #!/bin/sh
-ln -sf /tmp/libqt5/network/* /usr/lib/
-endef
+#ln -sf /tmp/usr/lib/* /usr/lib/
+#endef
 
 # define Package/qt5-widgets/install
 # 	$(INSTALL_DIR) $(1)/usr/lib/

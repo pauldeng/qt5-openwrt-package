@@ -31,7 +31,7 @@ If the target device has not enough space to install the library, you could choo
 # this following command installs to /usr/lib/libqt5 
 opkg install qt5-core_5.11-3_mips_24kc.ipk
 # The destinations are defined in /etc/opkg.conf
-opkg -d ram install somepackage
+opkg -d ram install qt5-core_5.11-3_mips_24kc.ipk
 # you can create a symblic link to /usr/lib
 ```
 
@@ -101,9 +101,14 @@ OpenWrt compiler is required.
     ```bash
     opkg install libstdcpp6_8.4.0-3_mips_24kc.ipk
     opkg install libatomic1_8.4.0-3_mips_24kc.ipk
+    opkg install unzip_6.0-8_mips_24kc.ipk
 
-    opkg install qt5-core_5.11-3_mips_24kc.ipk
-    opkg install qt5-network_5.11-3_mips_24kc.ipk
+    # will be installed to ram /tmp/usr/lib/
+    opkg -d ram install qt5-core_5.11-3_mips_24kc.ipk
+    opkg -d ram install qt5-network_5.11-3_mips_24kc.ipk
+
+    # create symbolic link to system
+    ln -sf /tmp/usr/lib/libQt5* /usr/lib/
     ```
 
 ## Hello World Application
