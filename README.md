@@ -34,7 +34,7 @@ For more information, please refer to <https://doc.qt.io/qt-5/configure-options.
 
 OpenWRT compiler is required.
 
-1. Download SDK, for example <https://archive.openwrt.org/releases/21.02.7/targets/ramips/mt7620/openwrt-sdk-21.02.7-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64.tar.xz>  
+1. Download SDK, for example <https://archive.openwrt.org/releases/21.02.7/targets/ramips/mt76x8/openwrt-sdk-21.02.7-ramips-mt76x8_gcc-8.4.0_musl.Linux-x86_64.tar.xz>  or alternatively <https://dengpeng.de/wp-content/uploads/2025/10/openwrt-sdk-ramips-mt76x8_gcc-8.4.0_musl.Linux-x86_64.tar.xz>
 2. Extract the SDK  
 3. Clone this repo  
 4. Put this repo into SDK/package  
