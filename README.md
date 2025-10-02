@@ -4,13 +4,12 @@ Cross compile the Qt5 Core library for OpenWRT MIPS platform.
 
 ## Target OpenWRT Versions
 
-* If you are running OpenWRT 14.07, please use the master branch.
-* If you are running OpenWRT 19.07, please use the 19.07 branch.
+This branch is for OpenWRT v21.02.
 
 ## Configure Qt Modules and Features
 
 You can see all the modules available by browsering the folders of Qt5 source code.  
-For example, qtchart is a module under qt-everywhere-src-5.11.3. You can modify the Makefile to disable/enable this module.  
+For example, qtchart is a module under qt-everywhere-src-5.12.12. You can modify the Makefile to disable/enable this module.  
 
 You can see all the features available by following command.
 
@@ -20,11 +19,12 @@ You can see all the features available by following command.
 
 You can modify the Makefile to disable/enable this feature.  
 
-For more information, please refer to https://doc.qt.io/qt-5/configure-options.html.
+For more information, please refer to <https://doc.qt.io/qt-5/configure-options.html>.
 
 ## Special Cases
 
 ### Not enough space in /usr/lib/
+
 * If the target device has not enough space to install the library, you could choose to install the library to /tmp/. However, /tmp/ resides in ram and will be lost after reboot.  
 * If the target device has enough space to install the library, you need to modify the Makefile.  
 
@@ -34,7 +34,7 @@ For more information, please refer to https://doc.qt.io/qt-5/configure-options.h
 
 OpenWRT compiler is required.
 
-1. Download SDK, for example https://archive.openwrt.org/barrier_breaker/14.07/ramips/mt7620n/OpenWrt-SDK-ramips-for-linux-x86_64-gcc-4.8-linaro_uClibc-0.9.33.2.tar.bz2  
+1. Download SDK, for example <https://archive.openwrt.org/releases/21.02.7/targets/ramips/mt7620/openwrt-sdk-21.02.7-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64.tar.xz>  
 2. Extract the SDK  
 3. Clone this repo  
 4. Put this repo into SDK/package  
@@ -59,8 +59,8 @@ OpenWRT compiler is required.
 2. Install ipk files by  
 
     ```bash
-    opkg install qt5-core_5.11-3_ramips_24kec.ipk
-    opkg install qt5-network_5.11-3_ramips_24kec.ipk
+    opkg install qt5-core_5.12-12_ramips_24kec.ipk
+    opkg install qt5-network_5.12-12_ramips_24kec.ipk
     ```
 
 ## Hello World Application
@@ -71,10 +71,11 @@ OpenWRT compiler is required.
     make -C scripts/config/ clean  
     make
     ```
+
 2. then, go to the qt source code and make install by
 
     ```bash
-    cd  build_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/qt-everywhere-src-5.11.3  
+    cd  build_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/qt-everywhere-src-5.12.12  
     make install
     ```
 
@@ -111,7 +112,7 @@ OpenWRT compiler is required.
     * Device: OpenWrt Device (default for Generic Linux)
     * Compiler: C, OpenWrt GCC; C++, OpenWrt G++
     * Debugger: OpenWrt Debugger
-    * Qt version: Qt 5.11.3
+    * Qt version: Qt 5.12.12
 
 9. Create a New Project --> Qt Console Application --> Choose... --> Name: helloWorld --> qmake --> OpenWrt Kit --> Finsh
 
@@ -123,14 +124,15 @@ OpenWRT compiler is required.
         return 0;
     }
     ```
+
 10. Build. Transfer to your target device and run.
 
 ## Tested Hardware Platform
 
-* OpenWRT 14.07 based industrial 4G router
+* OpenWRT 21.02 based industrial 4G router
 
 ## Acknowledgments
 
-* Forked from https://github.com/pawelkn/qt5-openwrt-package  
-* Updated by https://github.com/vonger  
-* Inspired by http://vonger.cn/?p=14588  
+* Forked from <https://github.com/pawelkn/qt5-openwrt-package>  
+* Updated by <https://github.com/vonger>  
+* Inspired by <http://vonger.cn/?p=14588>  
