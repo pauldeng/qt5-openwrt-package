@@ -93,8 +93,6 @@ define Build/Configure
 			-no-opengl \
 			-no-eglfs \
 			-no-kms \
-			-no-openssl \
-			-no-feature-ssl \
 			-no-directfb \
 			-no-xcb \
 			-no-cups \
